@@ -1,6 +1,5 @@
 var crypto = require( 'crypto' );
 var hash = crypto.createHash( 'sha512' );
-hash.setEncoding( 'hex' );
 
 module.exports = function( RED ){
   function HashNode( config ){
