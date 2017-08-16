@@ -11,6 +11,7 @@ module.exports = function( RED ){
       hash.update( payload );
       var newpayload = hash.digest( 'hex' );
       
+      msg.payload = {};
       msg.payload.original = payload;
       msg.payload.hash = newpayload;
       node.send( msg );
