@@ -9,11 +9,7 @@ module.exports = function( RED ){
       var payload = msg.payload;
 
       hash.update( payload );
-      var newpayload = hash.digest( 'hex' );
-      
-      msg.payload = {};
-      msg.payload.original = payload;
-      msg.payload.hash = newpayload;
+      msg.hash = hash.digest( 'hex' );
       node.send( msg );
     });
   }
