@@ -18,7 +18,9 @@ module.exports = function( RED ){
       }
 
       hash.update( payload );
-      msg.hash = hash.digest( 'hex' );
+      if(config.outPay)
+        msg.payload = hash.digest( 'hex' );
+      else msg.hash = hash.digest( 'hex' );
       node.send( msg );
     });
   }
