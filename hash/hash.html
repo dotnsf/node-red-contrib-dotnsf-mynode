@@ -4,7 +4,8 @@ RED.nodes.registerType( 'hash', {
   color: '#a6bbcf',
   defaults: {
     name: { value: '' },
-    algorhythm: { value: 'sha512' }
+    algorithm: { value: 'sha512' },
+    outPay: {value: true}
   },
   inputs: 1,
   outputs: 1,
@@ -18,10 +19,10 @@ RED.nodes.registerType( 'hash', {
 <script type="text/x-red" data-template-name="hash">
 <div class="form-row">
   <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-  <input type="text" id="node-input-name" placeholder="Name">
+  <input type="text" id="node-input-name" placeholder="Name" />
   <br/>
-  <label for="node-input-algorhythm"><i class="icon-tag"></i> Algorhythm</label>
-  <select id="node-input-algorhythm">
+  <label for="node-input-algorithm"><i class="icon-tag"></i> algorithm</label>
+  <select id="node-input-algorithm">
   <option value="md1">MD1</option>
   <option value="md2">MD2</option>
   <option value="md5">MD5</option>
@@ -29,15 +30,18 @@ RED.nodes.registerType( 'hash', {
   <option value="sha256">SHA256</option>
   <option value="sha512" selected>SHA512</option>
   </select>
+  <br/>
+  <input type="checkbox" id="node-input-outPay" selected  />
+    <label for="node-input-outPay">Output the hash in msg.payload (as opposed to msg.hash)</label>
 </div>
 </script>
 
 <script type="text/x-red" data-help-name="hash">
-  <p>A simple node that calculate hashed value with specified algorhythm for payload.</p>
+  <p>A simple node that calculate hashed value with specified algorithm for payload.</p>
   <p><table border="1">
   <tr><td>Input</td><td>msg.payload</td><td>value which is to be hashed.</td></tr>
-  <tr><td>Input</td><td>msg.algorhythm</td><td>hash algorhythm(default sha512)</td></tr>
-  <tr><td>Output</td><td>msg.hash</td><td>hashed value.</td></tr>
+  <tr><td>Input</td><td>msg.algorithm</td><td>hash algorithm(default sha512)</td></tr>
+  <tr><td>Output</td><td>msg.payload (by default)</td><td>hashed value.</td></tr>
   </table></p>
 </script>
 
