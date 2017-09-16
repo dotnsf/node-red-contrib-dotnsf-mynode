@@ -5,7 +5,7 @@ module.exports = function( RED ){
     RED.nodes.createNode( this, config );
 
     this.algorithm = config.algorithm;
-    console.log( this.algorithm );
+    this.outputvar = config.outputvar;
     var hash = crypto.createHash( this.algorithm );
 
     var node = this;
@@ -18,9 +18,7 @@ module.exports = function( RED ){
       }
 
       hash.update( payload );
-      if(config.outPay)
-        msg.payload = hash.digest( 'hex' );
-      else msg.hash = hash.digest( 'hex' );
+      msg[this.outputvar] = hash.digest( 'hex' );
       node.send( msg );
     });
   }
