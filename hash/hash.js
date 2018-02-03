@@ -6,15 +6,18 @@ module.exports = function( RED ){
 
     this.algorithm = config.algorithm;
     this.outputvar = config.outputvar;
-    var hash = crypto.createHash( this.algorithm );
+//    var hash = crypto.createHash( this.algorithm );
 
     var node = this;
     node.on( 'input', function( msg ){
       var payload = msg.payload;
       var algorithm = msg.algorithm;
+      var hash;
       if( algorithm ){
         console.log( algorithm );
         hash = crypto.createHash( algorithm );
+      }else{
+        hash = crypto.createHash( this.algorithm );
       }
 
       hash.update( payload );
